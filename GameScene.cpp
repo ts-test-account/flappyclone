@@ -81,12 +81,14 @@ bool GameScene::onContactBegin( cocos2d::PhysicsContact &contact )
     
     if ( ( BIRD_COLLISION_BITMASK == a->getCollisionBitmask() && OBSTACLE_COLLISION_BITMASK == b->getCollisionBitmask() ) ||  ( BIRD_COLLISION_BITMASK == b->getCollisionBitmask() && OBSTACLE_COLLISION_BITMASK == a->getCollisionBitmask() ) )
     {
+        CCLOG( "score: %i", score );
         auto scene = GameOverScene::createScene();
         Director::getInstance()->replaceScene( TransitionFade::create(TRANSITION_TIME, scene) );
     }
     else if ( ( BIRD_COLLISION_BITMASK == a->getCollisionBitmask() && OBSTACLE_COLLISION_BITMASK == b->getCollisionBitmask() ) ||  ( BIRD_COLLISION_BITMASK == b->getCollisionBitmask() && OBSTACLE_COLLISION_BITMASK == a->getCollisionBitmask() ) )
     {
-        
+        CCLOG( "point scored" );
+        score++;
     }
     
     return true;
